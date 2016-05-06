@@ -1,0 +1,49 @@
+ctx = '.cart-list'
+{ctx} {
+	width: 100%;
+	padding: 1rem;
+	border-top: 1px solid #e6e6e6;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	box-sizing: border-box;
+
+	&:first-child{
+		border-top: 0;
+	}
+	
+	&__content{
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		width: 50%;
+	}
+	
+	&__image{
+		max-width: 50px;
+		max-height: 50px;
+		display: inline-block;
+		
+		img{
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__name{
+		display: inline-block;
+		box-sizing: border-box;
+		padding: 0 1rem;
+		vertical-align: top;
+	}
+	
+	&__amount, &__price{
+		width: 25%;
+	}		
+
+	&__amount, &__name, &__price{
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+}

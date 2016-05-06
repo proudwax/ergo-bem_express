@@ -1,0 +1,127 @@
+block('plugin')(
+	js()(true),
+	cls()('swiper'),
+	elem('swiper')(
+		cls()('swiper-container'),
+		content()(function() {
+			return applyNext().reduce(function(prev, cur) {
+				if (cur.elem === 'slide') {
+					prev[0].content.push(cur);
+				} else {
+					prev.push(cur);
+				}
+				return prev;
+			}, [{ elem: 'wrapper', cls: 'swiper-wrapper', content: [] }]);
+		}),
+		elem('slide')(
+			cls()('swiper-slide'),
+			attrs()(function() {
+					return { 'style': 'background-image:url(' + this.ctx.bg + ')' };
+				}
+			),
+			content()(function(){
+				var _title = this.ctx.title,
+					_text = this.ctx.text;
+				return { 
+					block: 'slider-content', 
+					content: [
+						{
+							elem: 'inner',
+							content: [
+								{
+									elem: 'title',
+									content: _title
+								},
+								{
+									elem: 'text',
+									content: _text
+								}
+							]
+						}
+					]
+				};
+			})
+		),
+		elem('title')(
+			tag()('h1')
+		),
+		elem('button')(
+			match(function(){ return this.elemMods.prev })(
+				cls()('swiper-button-prev')
+			),
+			match(function(){ return this.elemMods.next })(
+				cls()('swiper-button-next')
+			)
+		),
+		elem('pagination')(
+			cls()('swiper-pagination')
+		)
+	
+	)
+);
+
+
+
+
+
+
+
+/*
+block('swiper')(
+	js()(true),
+	cls()('swiper-container'),
+	content()(function() {
+	    return applyNext().reduce(function(prev, cur) {
+	        if (cur.elem === 'slide') {
+	            prev[0].content.push(cur);
+	        } else {
+	            prev.push(cur);
+	        }
+	        return prev;
+	    }, [{ elem: 'wrapper', cls: 'swiper-wrapper', content: [] }]);
+	}),
+	elem('slide')(
+		cls()('swiper-slide'),
+		attrs()(function() {
+				return { 'style': 'background-image:url(' + this.ctx.bg + ')' };
+			}
+		),
+		content()(function(){
+			var _title = this.ctx.title,
+				_text = this.ctx.text;
+			return { 
+				block: 'slider-content', 
+				content: [
+					{
+						elem: 'inner',
+						content: [
+							{
+								elem: 'title',
+								content: _title
+							},
+							{
+								elem: 'text',
+								content: _text
+							}
+						]
+					}
+				]
+			};
+		})
+	),
+	elem('title')(
+		tag()('h1')
+	),
+	elem('button')(
+		match(function(){ return this.elemMods.prev })(
+			cls()('swiper-button-prev')
+		),
+		match(function(){ return this.elemMods.next })(
+			cls()('swiper-button-next')
+		)
+	),
+	elem('pagination')(
+		cls()('swiper-pagination')
+	)
+);
+*/

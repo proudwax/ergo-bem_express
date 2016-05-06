@@ -1,0 +1,16 @@
+block('sidebar').elem('aside')(
+	def()(function() {
+		var mods = this.mods;
+
+        return applyCtx({
+            block : 'aside',
+            mix : { block : this.block, elem : this.elem },
+            mods : {
+                theme : mods.theme,
+            },
+            content : [
+                apply('content')
+            ]
+        });
+    })
+)

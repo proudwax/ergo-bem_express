@@ -1,0 +1,39 @@
+block('cart-preview')(
+	// tag()('form')
+	/*attrs()(function(){
+		return { 
+			'accept-charset': this.ctx['accept-charset'], 
+			action: this.ctx.action, 
+			autocomplete: this.ctx.autocomplete,
+			enctype: this.ctx.enctype, 
+			method: this.ctx.method || 'post', 
+			name: this.ctx.name, 
+			target: this.ctx.target
+		}
+	}),
+	elem('header')(
+		mix()('row container-fluid middle-xs')
+	),
+	elem('item')(
+		mix()('row container-fluid middle-xs')
+	),
+	elem('footer')(
+		mix()('row container-fluid middle-xs')
+	),
+	elem('title')(
+		mix()('col-xs-offset-1 col-xs-5'),
+		tag()('h1')
+	),
+	elem('amount')(
+		mix()('col-xs-3')
+	),
+	elem('price')(
+		mix()('col-xs-2')
+	),
+	elem('total')(
+		mix()('col-xs-offset-1 col-xs-8')
+	),
+	elem('action')(
+		mix()('col-xs-3')
+	)*/
+)

@@ -1,0 +1,20 @@
+block('logo')(
+	tag()('a'),
+	attrs()(function(){
+		return { href: this.ctx.href, title: this.ctx.title }
+	}),
+	match(function(){ return this.ctx.url || this.ctx.alt })(
+		content()(function(){
+			return [
+				{
+					block: 'image',
+					url: this.ctx.url,
+					alt: this.ctx.alt,
+					width: this.ctx.width,
+					height: this.ctx.height
+				},
+				applyNext()
+			]
+		})
+	)
+)

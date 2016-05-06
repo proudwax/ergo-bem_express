@@ -1,0 +1,26 @@
+block('sidebar')(
+	def()(function(){
+		return applyNext({
+			_textButton: this.ctx.buttonText,
+			_buttonIcon: this.ctx.buttonIcon
+		});
+	}),
+
+	js()(true),
+	
+	elem('button').content()(function() {
+		var content = { elem : 'text', content : this._textButton };
+		
+		if(this._buttonIcon)
+			content = [ this._buttonIcon, content ];
+		
+        return content;
+    }),
+	
+	elem('aside').content()(function(){
+		return [
+			{ elem: 'title', content: this._textButton },
+			{ elem: 'content', content: applyNext() }
+		]
+	})
+)

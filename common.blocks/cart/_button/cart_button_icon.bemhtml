@@ -1,0 +1,50 @@
+block('cart').mod('button', 'icon')(
+	content()(function(){
+		var size = this.ctx.mods.size,
+			content = this.ctx.content,
+			count = this.ctx.js.count;
+
+		function elemText(content){
+			return !!content ? { 
+				block: 'cart', 
+				mods: { button: 'icon' }, 
+				elem: 'text', content: applyNext() 
+			} : null;
+		}
+
+		return [
+			{
+				block : 'link',
+				mods : { theme : 'ergo', 'size': size || 'm', badge: true, icon: true },
+				badge: this.ctx.js.count,
+				content : [
+					elemText(content),
+					{
+						block: 'icon',
+						cls: 'material-icons',
+						content: '&#xE8CC;'
+					},
+					{
+						block: 'cart', 
+						mods: { button: 'icon' }, 
+						elem: 'badge',
+						content: count
+					}
+				]
+			}
+		];
+	}),
+
+	elem('text')(
+		tag()('span')
+	),
+
+	elem('badge')(
+		tag()('span')
+	)
+
+)
+
+block('icon')(
+	tag()('i')
+)

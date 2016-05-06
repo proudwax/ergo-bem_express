@@ -1,0 +1,18 @@
+block('button')(
+    mod('cart', true)(
+        content()(function(){
+            return [
+                applyNext(),
+                {
+                    block: 'icon',
+                    cls: 'material-icons',
+                    content: '&#xE8CC;'
+                }
+            ]
+        })  
+    ),
+
+    mod('netcat', 'put')(
+        elem('spin').tag()('span')
+    )
+);

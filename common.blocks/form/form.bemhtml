@@ -1,0 +1,62 @@
+block('form')(
+	def()(function(){
+		return applyNext({
+			_mods: this.ctx.mods,
+			_elemButtomMods: this.ctx.elemButtomMods,
+			_buttonName: this.ctx.buttonName,
+			_buttonText: this.ctx.buttonText,
+			_buttonMods: this.ctx.buttonMods,
+			_buttonIcon: this.ctx.buttonIcon
+		});
+	}),
+
+	js()(true),
+	
+	tag()('form'),
+
+	attrs()(function(){
+
+		var ctx = this.ctx,
+			attrs = {};
+
+		ctx.action && (attrs.action = ctx.action);
+		ctx.method && (attrs.method = ctx.method);
+		ctx.name && (attrs.name = ctx.name);
+		ctx.target && (attrs.target = ctx.target);
+		ctx.enctype && (attrs.enctype = ctx.enctype);
+		ctx.charset && (attrs['accept-charset'] = ctx.charset);
+		ctx.autocomplete && (attrs.autocomplete = ctx.autocomplete);
+
+		return attrs;
+	}),
+
+	content()(function(){
+		return [
+			{
+				elem: 'container',
+				content: applyNext()
+			},
+			{
+				elem: 'button',
+				elemMods: this._elemButtomMods
+			}
+		]
+	}),
+	
+	elem('item').match(function(){ return this.position == 1})(
+		def()(function(){
+			return applyCtx(
+			{
+				elem: this.elem,
+				elemMods: { first : true },
+				content: this.ctx.content
+			});
+		})
+	),
+	
+	elem('legend')(
+		content()(function(){
+			return '<h3>' + applyNext() + '</h3>';
+		})
+	)
+)

@@ -1,0 +1,13 @@
+block('menu').match(function(){ return this.mods.type === 'horizontal' })(
+	tag()('nav'),
+	content()(function() {
+	    return [
+			applyNext().map(function(cur) {
+				if(cur.block === 'menu-item') {
+					cur.tag = 'span';
+				}
+				return cur;
+			})
+		]
+	})
+);

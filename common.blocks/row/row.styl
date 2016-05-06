@@ -1,0 +1,94 @@
+ctx = '.row'
+{ctx} {
+
+	display: flex;
+	flex-flow: row wrap;
+	flex: 0 1 auto;
+	margin-left: -.25rem;
+	margin-right: -.25rem;
+
+	&__col{
+	   margin-left: .25rem;
+	   margin-right: .25rem;
+	   
+	   	&_first_s{
+			order: -1;
+		}
+		
+		&_last_s{
+			order: 1;
+		}
+	}
+	
+	getWidth(col){
+		(100% / 12 * col)
+	}
+	
+	for colCount, i in (1 2 3 4 5 6 7 8 9 10 11 12) {
+        &__col_{colCount}{
+            width: calc(100% - .5rem);
+			   flex-basis: calc(100% - .5rem);
+        }
+    }
+	
+	@media only screen and (min-width: 48em){
+		for colCount, i in (1 2 3 4 5 6 7 8 9 10 11 12) {
+			colWidth = getWidth(colCount);
+		
+			&__col_{colCount}{
+			   width: 'calc(%s - .5rem)' % colWidth;
+			   flex-basis: 'calc(%s - .5rem)' % colWidth;
+			}		
+		}
+		
+		&__col{
+			&_first_m{
+				order: -1;
+			}
+
+			&_last_m{
+				order: 1;
+			}		
+		}
+	}
+	
+	@media only screen and (min-width: 75em){
+		for colCount, i in (1 2 3 4 5 6 7 8 9 10 11 12) {
+			colWidth = getWidth(colCount);
+		
+			&__col_{colCount}{
+			   width: 'calc(%s - .5rem)' % colWidth;
+			   flex-basis: 'calc(%s - .5rem)' % colWidth;
+			}	
+		}
+		
+		&__col{
+			&_first_l{
+				order: -1;
+			}
+
+			&_last_l{
+				order: 1;
+			}
+		}		
+	}
+	
+	@media screen and (orientation: portrait){ 
+		for colCount, i in (1 2 3 4 5 6 7 8 9 10 11 12) {
+			&__col_{colCount}{
+				width: calc(100% - .5rem);
+				   flex-basis: calc(100% - .5rem);
+			}
+		}
+		
+		&__col{
+			&_first_portrait{
+				order: -1;
+			}
+
+			&_last_portrait{
+				order: 1;
+			}
+		}	
+	}		
+}

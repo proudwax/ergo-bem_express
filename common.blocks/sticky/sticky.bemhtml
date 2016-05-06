@@ -1,0 +1,49 @@
+// Мой вариант
+/* block('sticky')(
+	wrap()(function(){
+		return [
+			{
+				block: 'sticky',
+				js: true,
+				content: [
+					{
+						elem: 'panel',
+						mix: this.ctx.mix,
+						content: this.ctx.content, // вернет текущий блок
+					},
+					{
+						elem: 'backing'
+					} // добавит пустой div				
+				]
+			}
+		];
+	})
+); */
+
+
+// Vladimir Grinenko, доработка под меня
+// bemjson
+
+/* {
+    block: 'sticky',
+    panelMixes: [] // здесь перечислить миксы
+}
+ */
+ 
+// bemhtml
+
+block('sticky')(
+	js()(true),
+	content()(function() {
+		return [
+			{
+				elem: 'panel',
+				elemMods: this.ctx.panelMods,
+				mix: this.ctx.panelMix,
+				cls: this.ctx.panelCls,
+				content: applyNext() // это означает вернуть результат текущей моды (в данном случае — content == более правильный способ сделать this.ctx.content, т.к. применятся и предыдущие шаблоны, если они есть)
+			},
+			{ elem: 'backing' }
+		];
+	})
+)

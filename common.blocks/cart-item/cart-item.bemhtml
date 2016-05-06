@@ -1,0 +1,34 @@
+block('cart-item')(
+	
+	js()(true),
+	
+	/* mod('view', 'cart-popup')(
+		mix()({ block: 'link', mods: { theme: 'ergo' } }),
+	
+		tag()('a'),
+		
+		attrs()(function(){ return {'href': this.ctx.id} })
+	), */
+	
+	elem('image').content()(function(){
+		return {
+			block: 'image',
+			mods: { lazy: true },
+			url: this.ctx.url
+		}
+	}),
+	
+	elem('trash')(
+		content()(function(){
+			return {
+				block: 'button',
+				mix: { block: 'button-trash' },
+				mods: { view : 'action', type: 'link', theme: 'ergo', size: 'm', view : 'plain', 'trash': true },
+				url: this.ctx.url,
+				icon: {
+					block: 'icon'
+				}
+			}
+		})
+	)
+)

@@ -1,0 +1,10 @@
+block('cart-list')(
+	
+	elem('image').content()(function(){
+		return {
+			block: 'image',
+			mods: { lazy: true },
+			url: this.ctx.url
+		}
+	})
+)

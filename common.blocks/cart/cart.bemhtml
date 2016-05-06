@@ -1,0 +1,15 @@
+block('cart')(
+	elem('image')(
+		content()(function(){
+			return {
+				block: 'image',
+				alt: this.ctx.alt,
+				url: this.ctx.url
+			}
+		})
+	),
+	
+	elem('title')(
+		tag()('h1')
+	)
+)

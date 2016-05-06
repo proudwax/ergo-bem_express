@@ -1,0 +1,16 @@
+block('input').mod('type', 'geo')(
+	elem('control').attrs()(function() {
+		return this.extend(applyNext(), { type : 'text' });
+	}),
+	
+	elem('box').content()(function(){
+		return [
+			{
+				elem: 'geo'
+			},
+			applyNext()
+		]
+	}),
+	
+	elem('geo').tag()('span')
+)

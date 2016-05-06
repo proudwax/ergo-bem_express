@@ -1,0 +1,57 @@
+block('goods-card')(
+	js()(true),
+
+	elem('title')(
+		tag()('h1'),
+		
+		mod('small', true)(
+			tag()('h2')
+		)
+	),
+
+	elem('price_old').content()(function(){
+		return [
+			applyNext(),
+			{
+				block: 'rub',
+				mods: { size: 'small' }
+			}
+		]
+	}),
+
+	elem('price_current').content()(function(){
+		return [
+			applyNext(),
+			{
+				block: 'rub',
+				mods: { size: 'small' }
+			}
+		]
+	}),
+
+	elem('action').content()(function(){
+		return [
+			{
+			    block : 'button',
+			    js: { id: '123' },
+			    mods : { theme : 'ergo', size : 'l', view : 'action', netcat: 'put', type: 'link' },
+			    url : 'https://bem.info/',
+			    text : 'В корзину',
+			    icon: {
+					block: 'icon',
+					cls: 'material-icons',
+					content: '&#xE8CC;'
+				}
+			}
+		]
+	}),
+
+	elem('image').content()(function(){
+		return [
+			{
+				block: 'image',
+				url: applyNext()
+			}
+		]
+	})
+)

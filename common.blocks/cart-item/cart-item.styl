@@ -1,0 +1,19 @@
+ctx = '.cart-item'
+{ctx} {
+	width: 100%;
+	padding: 1rem;
+	border-top: 1px solid #e6e6e6;
+	position: relative;
+
+	&:first-child{
+		border-top: 0;
+	}	
+
+	&__trash{
+		position: absolute;
+		right: 30px;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 1;
+	}	
+}

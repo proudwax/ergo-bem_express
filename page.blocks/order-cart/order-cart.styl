@@ -1,0 +1,50 @@
+ctx = '.order-cart'
+{ctx} {
+	background: #fff;
+	margin-left: -1rem;
+	margin-right: -1rem;
+	
+	&__header{
+		border-bottom: 1px solid #e6e6e6;
+		padding: 1rem;
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+	}
+	
+	&__title, &__change{
+		display: inline-block;
+		width: 50%;
+	}
+	
+	&__change{
+		text-align: right;
+		font-size: 15px;
+		line-height: 18px;
+		
+		.link{
+			.icon{
+				padding-right: 3px;
+			}
+		}
+	}
+	
+	&__title{
+		font-size: 18px;
+		line-height: 22px;
+	}
+	
+	&__total{
+		font-size: 15px;
+		line-height: 18px;
+	}
+	
+	&__content{
+		padding: 1rem;	
+	}
+	
+	&__footer{
+		border-top: 1px solid #e6e6e6;
+		padding: 1rem;
+	}
+}

@@ -1,0 +1,7 @@
+block('cart').mod('info', true)(
+
+)
+
+block('icon')(
+	tag()('i')
+)

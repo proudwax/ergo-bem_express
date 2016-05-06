@@ -1,0 +1,7 @@
+block('order-cart')(
+	js()(true),
+
+	elem('title')(
+		tag()('h1')
+	)
+)

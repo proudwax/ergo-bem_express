@@ -1,0 +1,113 @@
+ctx = '.sticky'
+{ctx} {
+	position: relative;
+	margin: 0 -1rem;
+
+	&_type_hidden{
+		{ctx}__panel{
+			position: fixed;
+			top: 0;
+			/*opacity: 0;
+			transform: translateY(-10rem);*/
+
+			animation-duration: .3s;
+			animation-timing-function: ease-out;
+			animation-fill-mode: forwards;
+			animation-name: typeHidden;
+		}
+	}
+
+	&__panel{
+		background-color: #fff;
+		overflow: hidden;
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		transition: all 0.3s ease 0.1s;
+		justify-content: space-between;
+
+		&_between{
+			justify-content: space-between;
+		}
+	}
+	
+	&__panel_shadow{
+		position: absolute;
+		z-index: -1;
+		content: '';
+		top: 0;
+		left: 0;
+		right: 0;
+		box-shadow:0 5px 5px 0 rgba(0,0,0,.14),0 10px 10px 0 rgba(0,0,0,.12),0 4px 4px -1px rgba(0,0,0,.2);
+	}
+	
+	&__backing{
+		display: none;
+		position: relative;
+	}
+	
+	&_fixed > &__panel{
+		position: fixed;
+		background: rgba(255, 255, 255, 1);
+		top: 0;
+		z-index: 10;
+	}
+
+	&_type_hidden&_fixed > &__panel{
+		animation-name: typeHidden_visible;
+		/*transform: translateY(0);
+		opacity: 1;*/
+	}
+		
+	&_fixed > &__backing{
+		display: block;
+	}
+
+	&__col{
+		flex: 1 1 auto;
+	}
+	
+	&__col:last-child{
+		text-align: right
+	}
+}
+
+@keyframes typeHidden{
+    0%{
+    	visibility: visible;
+        transform: translateY(0);
+		opacity: 1;
+		z-index: 10;
+    }
+
+    99%{
+        z-index: 5;
+    }
+
+    100%{
+        visibility: hidden;
+        transform: translateY(-10rem);
+        opacity: 0;
+        z-index: 0;
+    }
+}
+
+@keyframes typeHidden_visible{
+    0%{
+        visibility: hidden;
+        transform: translateY(-10rem);
+        opacity: 0;
+        z-index: 0;
+    }
+
+    99%{
+        z-index: 5;
+    }
+
+    100%{
+    	visibility: visible;
+        transform: translateY(0);
+		opacity: 1;
+		z-index: 10;
+    }
+}

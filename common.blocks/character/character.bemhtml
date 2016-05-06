@@ -1,0 +1,8 @@
+block('character')(
+	/* match(function(){ return this.mods.aquo })(
+		content()(function(){
+			return applyNext()
+		})
+	), */
+	tag()('span')
+)	
