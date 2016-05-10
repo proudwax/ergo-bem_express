@@ -1,5 +1,4 @@
 block('goods-list').content()(function() {
-	
 	var items = this.data['goods-list'];
 	/* var items = ([
 		{

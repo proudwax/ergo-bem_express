@@ -4,6 +4,8 @@ var fs = require('fs'),
     path = require('path'),
     express = require('express'),
     app = express(),
+	router = express.Router({ strict: true }),
+	got = require('got'),
     bodyParser = require('body-parser'),
     favicon = require('serve-favicon'),
     morgan = require('morgan'),
@@ -30,6 +32,7 @@ app
     .enable('trust proxy')
     .use(favicon(path.join(staticFolder, 'favicon.ico')))
     .use(serveStatic(staticFolder))
+    .use('/static', express.static('static'))
     .use(morgan('combined'))
     .use(cookieParser())
     .use(bodyParser.urlencoded({ extended: true }))
@@ -42,7 +45,7 @@ app
     .use(passport.session())
     .use(slashes());
     // TODO: csrf, gzip
-
+	
 passport.serializeUser(function(user, done) {
     done(null, JSON.stringify(user));
 });
@@ -51,25 +54,37 @@ passport.deserializeUser(function(user, done) {
     done(null, JSON.parse(user));
 });
 
-app.get('/ping/', function(req, res) {
+router.get('/ping/', function(req, res) {
     res.send('ok');
 });
 
-app.get('/', function(req, res) {
-    render(req, res, {
-        view: 'index',
-        title: 'Main page',
-        meta: {
-            description: 'Page description',
-            og: {
-                url: 'https://site.com',
-                siteName: 'Site name'
-            }
-        }
-    })
+router.get('/', function(req, res) {
+    got('http://api-ergobaby.yazvyazda.ru')
+        .then(function(response) {
+            json = Object.assign({}, {
+                    view: 'index'
+                }, JSON.parse(response.body));
+            
+            render(req, res, json);
+        })
+        .catch(function(err) { console.error(err); });        
 });
 
-app.get('*', function(req, res) {
+router.get('/catalog/', function(req, res) {
+	url = 'http://api-ergobaby.yazvyazda.ru/catalog/' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
+
+	got(url)
+		.then(function(response) {
+			json = Object.assign({}, {
+					view: 'index'
+				}, JSON.parse(response.body));
+			
+			render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null);
+		})
+		.catch(function(err) { console.error(err); });
+});
+
+router.get('*', function(req, res) {
     res.status(404);
     return render(req, res, { view: '404' });
 });
@@ -83,6 +98,8 @@ if (isDev) {
 }
 
 isSocket && fs.existsSync(port) && fs.unlinkSync(port);
+
+app.use(router);
 
 app.listen(port, function() {
     isSocket && fs.chmod(port, '0777');

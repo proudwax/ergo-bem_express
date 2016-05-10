@@ -1,0 +1,17 @@
+block('catalog')(
+	def()(function(){
+		var mods = this.mods;
+
+        return applyCtx({
+            block : 'section',
+            mix : { block : this.block, elem : this.elem },
+            mods : {
+                theme : mods.theme,
+            },
+            /*content : [
+                apply('content')
+            ]*/
+            content : applyNext()
+        });
+	})
+)

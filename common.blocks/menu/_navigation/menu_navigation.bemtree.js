@@ -7,7 +7,7 @@ block('menu').mod('navigation', true).content()(function() {
 			mods : { type : 'link' },
 			content : {
 				block : 'link',
-				url : '#',
+				url : '/',
 				content: [
 					{
 						block: 'icon',   
