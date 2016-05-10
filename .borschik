@@ -1,5 +1,6 @@
 {
     "freeze_paths" : {
+        "libs/material-design-icons/iconfont/**": "static/fonts",
         "libs/**": ":base64:",
         "libs/**/*.svg": ":encodeURIComponent:",
         "*.blocks/**": ":base64:",

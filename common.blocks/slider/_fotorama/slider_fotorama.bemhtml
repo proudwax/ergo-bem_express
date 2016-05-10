@@ -1,0 +1,11 @@
+block('slider').mod('fotorama', true)(
+    js()(true),
+
+    elem('item')(
+    	tag()('a'),
+
+    	attrs()(function(){
+    		return { href: this.ctx.bg }
+    	})
+    )
+)

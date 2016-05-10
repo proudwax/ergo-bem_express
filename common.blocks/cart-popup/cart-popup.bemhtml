@@ -1,0 +1,56 @@
+block('cart-popup')(
+	js()(true),
+	
+	elem('header')(
+		content()(function(){
+			return [
+				{
+					block: 'link',
+					mods: { theme : 'ergo', size : 'l', pseudo : true },
+					url: '#',
+					content: [
+						'В корзине ' + this.ctx.count + ' товара &mdash; ' + this.ctx.total,
+						{
+							block: 'rub',
+							mods: { size: 'small' }
+						}
+					]
+				}
+
+
+			]
+		})
+	),
+	
+	elem('trash')(
+		content()(function(){
+			return {
+				block: 'button',
+				mods: { view : 'action', type: 'link', theme: 'ergo', size: 'm', view : 'plain', 'trash': true },
+				url: this.ctx.url,
+				icon: {
+					block: 'icon'
+				}
+			}
+		})
+	),
+	
+	elem('footer')(
+		content()(function(){
+			return [
+				{
+					block : 'button',
+					mods : { theme : 'ergo', size : 'm', type : 'link', view : 'action'  },
+					url : '#',
+					text : 'Перейти в корзину'
+				}/* ,
+				{
+					block : 'button',
+					mods : { theme : 'ergo', size : 'm', type : 'link' },
+					url : '#',
+					text : 'Оформить заказ'
+				} */
+			]
+		})
+	)
+)

@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/ty9dfvLAziwdqQ2dHoyjpvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/0eC6fl06luXEYWpBSJvXCFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/bbysZXYlQ_uS6wRz---nZA.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/ZLqKeelYbATG60EpZBSDy1tXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/77FXFjRbGzN4aCrSFhlh3ltXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+}
+
+
+html
+{
+    min-height: 100%;
+}
+
+ctx = '.page_theme_ergo'
+{ctx} {
+    font: 13px/15px 'Roboto', Helvetica, sans-serif;
+	font-weight: 300;
+
+	min-height: 100%;
+    width: 100%;
+    margin: 0;
+
+    color: #333;
+	background: #e6e6e6;
+
+	::selection {
+		background: #f37d2f;
+		color: #fff;
+	}
+
+	::-moz-selection {
+		background: #f37d2f;
+		color: #fff;
+	}	
+	
+	&.page_goods-card .page__container > div.sticky, &.page_goods-card .page__container > .section{
+		width: 50%;
+		max-width: 625px;
+	}
+
+	.page__container{
+		/*background: #fff;*/
+		max-width: calc(100% - 2rem);
+		margin: 0 auto;
+		padding: 0 1rem;
+
+		position: relative;
+		z-index: 0;
+	}
+
+	@media only screen and (min-width: 48em) {
+		.page__container{
+			max-width: calc(100% - 240px);
+			/*max-width: calc(100% - 440px);*/
+		}
+	}
+	
+	@media only screen and (min-width: 75em) {
+		.page__container{
+			max-width: calc(1250px - 2rem);
+		}
+	}
+	
+	@media screen and (orientation: portrait) { 
+		.page__container{
+			max-width: calc(100% - 4rem);
+		}
+	
+		&.page_goods-card .page__container > div.sticky, &.page_goods-card .page__container > .section{
+			width: 100%;
+			max-width: 1250px;
+		}	
+	}	
+}

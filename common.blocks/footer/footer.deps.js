@@ -1,0 +1,5 @@
+({
+    shouldDeps: [
+        'contact', 'character', 'copyright'
+    ]
+})

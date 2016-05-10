@@ -1,0 +1,26 @@
+ctx = '.filter'
+{ctx} {
+	display: inline-block;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	vertical-align: middle;
+	
+	/* &__group{
+		padding-left: 1rem;
+		padding-right: 1rem;
+	} */
+
+	& .radio-group.radio-group_type_button, & .select{
+		display: none;
+		margin: -9999px 0 0 -9999px;
+		visibility: hidden;
+	}
+
+	& .radio-group.radio-group_type_button.radio-group_visible, & .select.select_visible{
+		margin: 0;
+	    visibility: visible;
+		display: inline-block;
+	}
+}

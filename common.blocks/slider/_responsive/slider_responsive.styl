@@ -1,0 +1,37 @@
+ctx = '.slider'
+{ctx} {
+
+	&_responsive{
+		margin-left: -1rem;
+		margin-right: -1rem;
+		position: relative;
+		
+		{ctx}__content{
+			position: absolute;
+			top: 0;
+			opacity: 0;
+			transition: color 0.15s ease-out;
+
+			&_visible{
+				opacity: 1;
+			}
+		}
+
+		{ctx}__spin{
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			transition: color 0.15s ease-out;
+
+			&_invisible{
+				opacity: 0;
+				display: none;
+			}
+		}
+	}
+}

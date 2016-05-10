@@ -1,0 +1,33 @@
+block('contact')(
+	elem('phone')(
+		content()(function(){
+			return [
+				{
+					block: 'character', 
+					mods: { plus: true },
+					content: [
+						{
+							block: 'link',
+							mods: { theme : 'ergo' },
+							url: 'tel:+' + this.ctx.content,
+							content: applyNext()
+						}
+					]
+				}
+			]
+		})
+	),
+
+	elem('email')(
+		content()(function(){
+			return [
+				{
+					block: 'link',
+					mods: { theme : 'ergo' },
+					url: 'mailto:' + this.ctx.content,
+					content: applyNext()
+				}
+			]
+		})
+	)
+)

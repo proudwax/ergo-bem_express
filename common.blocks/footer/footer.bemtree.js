@@ -1,5 +1,16 @@
-block('footer').content()(function() {
+block('footer').content()(function(){
+	var data = this.data;
+	
     return [
-        'footer content'
+    	{
+            block: 'contact',
+			phone: data.tel,
+			email: data.email
+        },
+        {
+            block: 'copyright',
+            mods: { 'right': true },
+			content: '© ' + data.copyright
+        }
     ];
 });

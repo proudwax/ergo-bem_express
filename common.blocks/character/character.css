@@ -1,0 +1,47 @@
+.character{
+	font-size: inherit;
+	/*line-height: 1;*/
+}
+.character:before, .character:after{
+	display: inline-block;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: inherit;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    font-weight: inherit;
+    line-height: 1;
+    text-rendering: auto;
+	overflow: hidden;
+}
+.character_aquo:before{
+	content: "\00ab";
+	position: relative;
+	width: 1em;
+	text-align: right;
+	margin-left: -1em;
+	bottom: 0;
+	vertical-align: bottom;
+}
+.character_aquo:after{
+	content: "\00bb";
+	position: relative;
+	width: 1em;
+	text-align: left;
+	bottom: 0;
+	vertical-align: bottom;
+	margin-right: -.5em;
+}
+.character_plus:before{
+	content: "\002b";
+	position: relative;
+	width: 1em;
+	text-align: right;
+	margin-left: -1em;
+	bottom: 0.1em;
+	vertical-align: middle;	
+}

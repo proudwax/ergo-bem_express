@@ -1,0 +1,22 @@
+block('select').mod('icon', true).elem('menu').def()(function() {
+	return applyNext({
+        _selectWithIcon: true // пробрасываем знание, что мы внутри нужного селекта
+    });
+});
+
+block('menu-item').match(function() {
+    return this._selectWithIcon; // проверяем, что это нужный menu-item
+}).js()(function() {
+	_this = this,
+	_content = this.ctx.content,
+	i = 0;
+	
+	for(i; i < _content.length; i ++) {		
+		if(_content[i].block == 'icon'){ 
+			return _this.extend(applyNext(), { icon: _content[i] });
+			break;
+		}
+	}
+	
+	return applyNext();
+});

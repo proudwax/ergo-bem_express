@@ -1,0 +1,19 @@
+block('slider')(
+    js()(true),
+
+    content()(function() {
+        return [
+            {
+                elem: 'content',
+                content: applyNext()
+            },
+            {
+                elem: 'spin',
+                content: {
+                    block : 'spin',
+                    mods : {theme : 'ergo', size : 'xl', visible: true }
+                }
+            }
+        ]
+    })
+)

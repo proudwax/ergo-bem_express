@@ -1,0 +1,10 @@
+block('page')(
+	match(function(){ return this.mods.theme == 'ergo' })(
+		content()(function(){
+			return { 
+				elem: 'container',
+				content: applyNext() 
+			}
+		})
+	)
+);

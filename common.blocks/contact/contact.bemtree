@@ -1,0 +1,12 @@
+block('contact').content()(function() {
+    return [    	
+		{
+			elem: 'phone',
+			content: this.ctx.phone
+		},
+		{
+			elem: 'email',
+			content: this.ctx.email
+		}
+    ];
+});

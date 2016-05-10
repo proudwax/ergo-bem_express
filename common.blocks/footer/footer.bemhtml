@@ -1,0 +1,10 @@
+block('footer')(
+	content()(function(){
+		return [
+			{
+				elem: 'inner',
+				content: applyNext()
+			}
+		]
+	})
+)

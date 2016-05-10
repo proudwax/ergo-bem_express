@@ -1,0 +1,5 @@
+block('select').def()(function() {
+    return applyNext({ _popupDirections: this.ctx.popupDirections, _selectMods: this.mods });
+});
+
+// Всё находится в блоке popup  _popupDirections: this.ctx.popupDirections, _selectMods: this.mods

@@ -1,0 +1,18 @@
+block('cart').mod('button', true)(
+	content()(function(){
+		var size = this.ctx.mods.size;
+
+		return [
+			{
+				block : 'button',
+				mods : { theme : 'ergo', 'size' : size || 'm', cart: true, badge: true },
+				text : this.ctx.content,
+				badge: this.ctx.js.count
+			}
+		]
+	})
+)
+
+block('icon')(
+	tag()('i')
+)

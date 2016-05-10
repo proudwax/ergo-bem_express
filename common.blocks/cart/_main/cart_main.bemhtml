@@ -1,0 +1,29 @@
+block('cart').mod('main', true)(
+	js()(true),
+	
+	tag()('form'),
+	
+	elem('image')(
+		content()(function(){
+			return {
+				block: 'image',
+				alt: this.ctx.alt,
+				url: this.ctx.url
+			}
+		})
+	),
+	
+	elem('title')(
+		tag()('h1')
+	),
+
+	elem('action')(
+		content()(function(){
+			return {
+				block : 'button',
+				mods : { theme : 'ergo', size : 'xl', view : 'action', type: 'submit' },
+				text : 'Оформить заказ'
+			}
+		})
+	)
+)

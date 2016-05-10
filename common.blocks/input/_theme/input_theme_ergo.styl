@@ -1,0 +1,377 @@
+ctx = '.input_theme_ergo'
+{ctx} {
+    font-family: "Roboto",Helvetica,sans-serif;
+
+    position: relative;
+
+    display: inline-block;
+
+    background: rgba(0, 0, 0, 0.2);
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    // Decorative element (inner background)
+    &:before
+    {
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        bottom: 1px;
+        left: 1px;
+
+        content: '';
+
+        background: #fff;
+    }
+
+    .input__box
+    {
+        position: relative;
+
+        display: block;
+
+        -webkit-touch-callout: none;
+
+        user-select: none;
+    }
+
+    .input__control
+    {
+        font: inherit;
+        line-height: inherit;
+
+        position: relative;
+
+        display: inline-block;
+
+        box-sizing: border-box;
+        padding: 0;
+        width: 100%;
+
+        border: 0;
+        outline: none;
+        background: none;
+
+        -webkit-appearance: none;
+
+        // лишние отступы у текста
+        &::-webkit-search-decoration
+        {
+            -webkit-appearance: none;
+        }
+
+        // нативный крестик
+        &::-webkit-search-cancel-button
+        {
+            display: none;
+        }
+
+        &::-webkit-input-placeholder
+        {
+            color: #999;
+            text-indent: 0;
+        }
+
+        &::-moz-placeholder
+        {
+            opacity: 1;
+            color: #999;
+        }
+
+        &::-ms-clear
+        {
+            display: none;
+        }
+    }
+
+    &.input_has-clear .input__control
+    {
+        text-overflow: ellipsis;
+    }
+
+    .input__clear
+    {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        cursor: text;
+        transition: opacity 0.1s ease-out;
+
+        opacity: 0;
+        background: 50% 50% no-repeat;
+
+        &_visible
+        {
+            opacity: 0.3;
+
+            &:hover
+            {
+                cursor: pointer;
+
+                opacity: 1;
+            }
+        }
+    }
+	
+	.input__geo{
+        position: absolute;
+        top: 0;
+        left: 0;
+		opacity: .3;
+
+        cursor: text;
+        transition: opacity 0.1s ease-out;
+		
+		&:hover{
+			cursor: pointer;
+			opacity: 1;
+		}
+	}
+
+    &.input_focused
+    {
+        z-index: 1;
+
+        box-shadow: 0 0 0 1px #f37d2f , inset 0 0 0 1px #f37d2f ;
+
+        .input__control
+        {
+            text-overflow: clip; // fix ellipsis bug in Chrome
+        }
+    }
+
+    &.input_disabled
+    {
+        background: rgba(0, 0, 0, 0.08);
+
+        &:before,
+        .input__clear
+        {
+            display: none;
+        }
+
+        .input__box,
+        .input__control
+        {
+            color: rgba(0, 0, 0, 0.4);
+            cursor: default;
+        }
+    }
+
+    &.input_size_s .input__clear,
+    &.input_size_m .input__clear
+    {
+        width: 24px;
+        height: 24px;
+
+        background-image: url(../../theme/_ergo/clear_size_s.svg);
+        background-position: 7px 50%;
+    }
+
+    &.input_size_s .input__geo,
+	&.input_size_m .input__geo{
+        width: 24px;
+        height: 24px;
+
+        /*background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABF0lEQVQ4jZWSr04DQRDGl6QOJLKqyAsHN9+3WYNYwQOcvAQED9AHQFTUEkRFJaICgagghOBQCHgAPAZZ2RAE4jB7yUCnW5hkzM73/eZP1jkjANQA5gDeU96SbCztjyiKYicZ2zV5D2B3LQDA7JfhM6V+m5tm7/2xEi1F5DTG2Isx9kg2ABaqXq8ASE46AcmhUW8UYGaN/6IEK3um+3T1Vwvw0AmqqjowVhwA+EiaJwtwqTqMjBWGqn5lAY6U4AvAKITQDyH0AZwDWGaP6JzbEpGbzB9oAbQicleW5bYFcN77w00AktE0dyEiF5nu06w53WKP5KPR+RnA/kZAgtQA3hRgISInfzKrVc7U6ON/mbsgOSF5ndN8AyxpsFiY3vnDAAAAAElFTkSuQmCC");*/
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABM0lEQVQ4T53TPyjncRjA8RcJg5KUBYnBcIPLpGy6oohuUaIYlAtd6ZDBfBJSSkw2WVxRBqWUTVksMuucrhsMN9xA6Hr0+dUv/3741Hf5fJ/n/X2e9/N887zv5KMLzXlvzC9GP8ZRj8+vBZRhBF9Riluc40MuQA2+YRDXWMEWDjGMtecAjZhENy6wGMH4hwX0ohZXDwFtKfETjjGPTdwkV1F+lD6D2bgLQAF6MIGP2MMc9p8QPIVpVONvBtCHUTThLiXuIJ6fWZBCnGEjfez+VXYLFWhHJ1pRgt10F7EhchV1+JUBPyexCENYQhV+4xRHGMhu7aUxxtJcYgx/sI0GnLwWEHHhIbyUJ2kdD8XmWqQvWE6TasHBWwGVSVj0HlN6dHJVEAmxUN/x472A+PvWk4tHjP9pCDjrZDimewAAAABJRU5ErkJggg==");
+
+        background-position: 50% 50%;
+		background-repeat: no-repeat;
+    }
+	
+    &.input_size_s
+    {
+        font-size: 13px;
+        line-height: 16px;
+
+		.spin_geo{
+			margin: 4px;
+		}
+		
+        .input__control
+        {
+            height: 24px;
+            padding: 0 6px;
+        }
+
+		&.input_type_geo .input__box{
+            padding-left: 24px;
+        }
+		
+        &.input_has-clear .input__box
+        {
+            padding-right: 24px;
+        }
+
+    }
+
+    &.input_size_m
+    {
+        font-size: 13px;
+        line-height: 16px;
+
+		.spin_geo{
+			margin: 6px;
+		}
+		
+        .input__control
+        {
+            height: 28px;
+            padding: 0 8px;
+        }
+
+		&.input_type_geo .input__box{
+            padding-left: 28px;
+        }
+		
+        &.input_has-clear .input__box
+        {
+            padding-right: 28px;
+        }
+
+        .input__clear
+        {
+            width: 28px;
+            height: 28px;
+
+            background-position: 9px 50%;
+        }
+		
+		.input__geo{
+	        width: 28px;
+            height: 28px;	
+		}
+    }
+
+    &.input_size_l .input__clear,
+    &.input_size_xl .input__clear
+    {
+        width: 32px;
+        height: 32px;
+
+        background-image: url(../../theme/_ergo/clear_size_l.svg);
+        background-position: 9px 50%;
+    }
+	
+    &.input_size_l .input__geo,
+    &.input_size_xl .input__geo{
+        width: 32px;
+        height: 32px;
+
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABpUlEQVQ4T63UP0iWURTH8Y9FEIEEBUGRlkNLUmBCQdDiUoOFaUubJKSUUKQVSItL0J8hCCL6Bw61RUFWNBoNQUNLYYtFQwThIEVQCRoHjvDw9j746tuFB57nufd87++e8zu3wf8ZK9CF3Q118lajF2ewDZ3LBa7DSQxiQ4p6h51LBW7FEI5hDaYwg/ZUOlYrcBfO4QhW4g2uYDyhc2jB7GLAAziLDszjOS5jIo8ZSu/mmqvxrxpwFY5iGDtiVzxIRe8LRYzY+N6EJvyoBDbiOE5jM77jFq7hSxU3dOJJKj6/MB+7bMQpDGAtfmEUNxJa5qyX2IMo1NcicD96wkMJj7lpPEsFLxaOUyAH6DXuoa+4YzGH8R7lP5hPWy78k4k/UQh8iMNoxWQZsPJokcdQHV3QjPX4mR3xAU9xqDJoMdvE+uiG66noMW6iH/vwajnAMOzHPPYIPuMt9larVi0KIy78Fv17BxfQjUf1AC9l60WBPmE7ot3+GbUqjHyF72KE+W+XmbNWYFwI37INt+B3vcCIv5+5vFgGK7scytaHJ8Mmcf+Vjr/2gk3pSyWrZwAAAABJRU5ErkJggg==");
+        background-position: 50% 50%;
+		background-repeat: no-repeat;
+    }	
+
+    &.input_size_l
+    {
+        font-size: 15px;
+        line-height: 18px;
+		
+		.spin_geo{
+			margin: 4px;
+		}
+		
+        .input__control
+        {
+            height: 32px;
+            padding: 0 10px;
+        }
+		
+		&.input_type_geo .input__box{
+            padding-left: 32px;
+        }
+
+        &.input_has-clear .input__box
+        {
+            padding-right: 32px;
+        }
+    }
+
+    &.input_size_xl
+    {
+        font-size: 18px;
+        line-height: 22px;
+
+		.spin_geo{
+			margin: 6px;
+		}
+		
+        .input__control
+        {
+            height: 38px;
+            padding: 0 12px;
+        }
+
+		&.input_type_geo .input__box{
+            padding-left: 38px;
+        }
+		
+        &.input_has-clear .input__box
+        {
+            padding-right: 38px;
+        }
+
+        .input__clear
+        {
+            width: 38px;
+            height: 38px;
+
+            background-position: 12px 50%;
+        }
+		
+		.input__geo{
+			width: 38px;
+            height: 38px;	
+		}
+    }
+
+    &.input_has-clear .input__control
+    {
+        padding-right: 0;
+    }
+
+    &.input_width_available
+    {
+        width: 100%;
+    }
+
+    &.input_type_password .input__control
+    {
+        text-overflow: clip;
+    }
+	
+	&.input_size_s .input__geo_spin,
+	&.input_size_m .input__geo_spin,
+	&.input_size_l .input__geo_spin,
+    &.input_size_xl .input__geo_spin{
+		opacity: 1;
+		background-image: none;
+	}	
+}
+
+.control-group
+{
+    {ctx} {
+        &:before
+        {
+            right: 0;
+        }
+
+        &.input_focused:before
+        {
+            right: 1px;
+        }
+    }
+
+    > {ctx}:last-child,
+    > :last-child {ctx}
+    {
+        &:before
+        {
+            right: 1px;
+        }
+    }
+}

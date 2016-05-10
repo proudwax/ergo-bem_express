@@ -1,0 +1,45 @@
+ctx = '.slider'
+{ctx} {		
+	position: relative;
+	height: 100%;
+	width: 100%;
+
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	
+	&_status{
+		&_ready{
+			{ctx}__content{
+				height: 100%;
+				width: 100%;
+				opacity: 1;
+				z-index: 1;
+			}
+		}
+	}
+
+	&__content{
+		position: relative;
+		max-width: 40rem;
+		height: 0;
+		opacity: 0;
+		transition: color 0.15s ease-out;
+	}
+
+	&__spin{
+		opacity: 1;
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		transition: color 0.15s ease-out;
+	}
+}

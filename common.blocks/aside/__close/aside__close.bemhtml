@@ -1,0 +1,21 @@
+block('aside').elem('close')(
+	def()(function(){
+		var mods = this.mods;
+		
+		return applyCtx({
+			block: 'link',
+			mix : { block : this.block, elem : this.elem },
+			mods: { 
+				theme: mods.theme
+			},
+			url: '#',
+			content: [
+				{
+					block: 'icon',
+					cls: 'material-icons',
+					content: '&#xE5C4;'
+				}
+			]
+		});
+	})
+)
