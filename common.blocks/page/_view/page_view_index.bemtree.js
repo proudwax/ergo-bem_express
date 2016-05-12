@@ -21,19 +21,22 @@ block('page').mod('view', 'index').content()(function() {
 			]
 		},
         {
+            block: 'catalog'
+        },
+        /*{
             block: 'section',
             content: [
         		{
                     block: 'sticky',
-                    mods: { theme: 'ergo', filter: true/* , 'cart-preview': true */ },
+                    mods: { theme: 'ergo', filter: true },
                     panelMods: { between: true }
                 }, 
         		{
                     block: 'goods-list',
-					js: { source: '/catalog/', params: { 'isNaked': 1/* , 'nc_ctpl': 2000 */ } }
+					js: { source: '/catalog/', params: { 'isNaked': 1, 'nc_ctpl': 2000  } }
                 }
             ]
-        },
+        },*/
         {
             block: 'footer'
         }

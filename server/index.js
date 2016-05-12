@@ -61,22 +61,19 @@ router.get('/ping/', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-	got('http://api-ergobaby.yazvyazda.ru')
-		.then(response => {	
-			json = Object.assign({}, {
-					view: 'index'
-				}, JSON.parse(response.body));
-				
-			render(req, res, json);
-		})
-		.catch(error => {
-			console.log(error.response.body);
-		});
+    got('http://api-ergobaby.yazvyazda.ru')
+        .then(function(response) {
+            json = Object.assign({}, {
+                    view: 'index'
+                }, JSON.parse(response.body));
+            
+            render(req, res, json);
+        })
+        .catch(function(err) { console.error(err); });
 });
 
 router.get('/catalog/', function(req, res) {
 	url = 'http://api-ergobaby.yazvyazda.ru/catalog/' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
-	console.log(url);
 
 	got(url)
 		.then(function(response) {

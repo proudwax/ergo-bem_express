@@ -19,12 +19,6 @@ exports.blocks = [
         ]
     },
     {
-        "name": "goods"
-    },
-    {
-        "name": "goods-list"
-    },
-    {
         "name": "modal"
     },
     {

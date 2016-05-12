@@ -11,7 +11,7 @@
 			'history', 'uri', 'location',
 			{ block: 'image' }
 		]	
-	},
+	}/* ,
     {
         tech: 'js',
         mustDeps: [
@@ -21,5 +21,5 @@
 			{ block: 'goods-list', elems: ['container'], tech: 'bemtree' },
 			{ block: 'root', tech: 'bemtree' }
         ]
-    }
+    } */
 ])

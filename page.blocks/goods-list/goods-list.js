@@ -6,7 +6,8 @@ provide(BEMDOM.decl(this.name, {
             'inited': function() {
             	var _this = this,
 					history = new History(),
-					simpleUrl = window.location.href;
+					simpleUrl = window.location.pathname;
+					/* console.log(Uri.parse(window.location.href).getPath()); */
 				
 				this._redraw();
 
@@ -45,18 +46,14 @@ provide(BEMDOM.decl(this.name, {
 					/* console.log(url.toString()); */
 					$.ajax({
 						url: url.toString(),
-						/* dataType: 'json', */
 						type: 'GET'					
 					})
 					.done(function(data){
-						/* console.log(data); */
-						/* BEMDOM.update(_this.domElem, _this._generateHtml(data)); */
-						BEMDOM.update(_this.domElem, data);
+						BEMDOM.replace(_this.findElem('container'), data);
 						
 						_this.delMod(_this.elem('spin'), 'visible');
 					})
 					.fail(function(data){
-						/* console.log(data); */
 						alert('error');
 					})
 					.always(function(data){	

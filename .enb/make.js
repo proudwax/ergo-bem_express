@@ -47,7 +47,7 @@ module.exports = function(config) {
             // templates
             [techs.bemhtml, { sourceSuffixes: ['bemhtml', 'bemhtml.js'] }],
 
-			/* My code */
+			/* My code yazvyazda */
 			// client bemtree
             [enbBemTechs.depsByTechToBemdecl, {
                 target: '?.bemtree.bemdecl.js',
@@ -68,7 +68,7 @@ module.exports = function(config) {
                 filesTarget: '?.bemtree.files',
                 sourceSuffixes: ['bemtree', 'bemtree.js']
             }],
-			/* /My code */			
+			/* /My code yazvyazda */					
 			
             // client bemhtml
             [enbBemTechs.depsByTechToBemdecl, {
@@ -100,7 +100,7 @@ module.exports = function(config) {
 
             // borschik
             [techs.borschik, { source: '?.js', target: '?.min.js', minify: isProd }],
-            [techs.borschik, { source: '?.css', target: '?.min.css', tech: 'cleancss', minify: isProd }]
+            [techs.borschik, { source: '?.css', target: '?.min.css', minify: isProd }]
         ]);
 
         nodeConfig.addTargets(['?.bemtree.js', '?.bemhtml.js', '?.min.css', '?.min.js']);
