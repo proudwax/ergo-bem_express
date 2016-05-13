@@ -20,7 +20,8 @@ block('goods-list').content()(function() {
 			"url": 
 				{
 					"info": "/1",
-					"cart": "/1_cart"
+					"cart": "/1_cart",
+					"tech": "/infoblock/id/"
 				},
 			"hash": "1fa5f5377f916b649d3ee04317d9ab9f "
 		}
@@ -36,6 +37,9 @@ block('goods-list').content()(function() {
 		}
 	}
 
+	function replaceUrl(url, pattern){
+	}
+	
 	function getBemJson(json){
 		return json.map(function(item){
 			return {
@@ -71,7 +75,7 @@ block('goods-list').content()(function() {
 											{
 												elem: 'name',
 												content: item.name,
-												urlInfo: item.url.info
+												urlInfo: item.url.tech
 											},
 											{
 												elem: 'price',
@@ -81,8 +85,8 @@ block('goods-list').content()(function() {
 											{
 												elem: 'action',
 												hash: item.hash,
-												urlInfo: item.url.info,
-												urlCart: item.url.cart
+												urlInfo: item.url.tech,
+												urlCart: item.url.cart.replace(/\/netcat\/modules\/minishop\/index\.php/g, '/cart/')
 											}
 										]
 									}

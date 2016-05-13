@@ -45,7 +45,7 @@ block('goods-list').elem('container').content()(function() {
 											{
 												elem: 'name',
 												content: item.name,
-												urlInfo: item.url.info
+												urlInfo: item.url.tech
 											},
 											{
 												elem: 'price',
@@ -55,8 +55,8 @@ block('goods-list').elem('container').content()(function() {
 											{
 												elem: 'action',
 												hash: item.hash,
-												urlInfo: item.url.info,
-												urlCart: item.url.cart
+												urlInfo: item.url.tech,
+												urlCart: item.url.cart.replace(/\/netcat\/modules\/minishop\/index\.php/g, '/cart/')
 											}
 										]
 									}

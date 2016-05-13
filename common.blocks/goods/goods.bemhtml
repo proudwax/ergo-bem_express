@@ -79,7 +79,7 @@ block('goods')(
 						block: 'button',
 						js: { hash: this.ctx.hash },
 						mods: { view : 'action', theme: 'ergo', size: 'm', netcat: 'put', type: 'link' },
-						url: /* 'http://minishop.yazvyazda.ru/netcat/modules/minishop/index.php?good[1][name]=%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%204&good[1][price]=1250&good[1][hash]=9c3a3fc913fbee62408efc571c5d2b49&good[1][uri]=%2Fkatalog%2Fkategorii-tovarov%2Fkategoriya-2%2Ftovar-6.html', */ this.ctx.urlCart,
+						url: this.ctx.urlCart,
 						text: 'Купить',
 						icon: {
 							block: 'icon',

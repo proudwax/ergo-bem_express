@@ -17,22 +17,35 @@ block('breadcrumbs')(
 	elem('item')(
 		tag()('li'),
 
-		content()(function(){
-			return [
-				{
-					elem: 'link',
-					url: this.ctx.url,
-					content: applyNext()
-				}
-			]
-		}),
-
 		match(function(){ return this.isFirst() })(
 			cls()('breadcrumbs__item_home')
 		),
 
 		match(function(){ return this.isLast() })(
 			cls()('breadcrumbs__item_last')
+		),
+		
+		match(function(){ return !this.ctx.url; })(
+			content()(function(){
+				return [
+					{
+						elem: 'span',
+						content: applyNext()
+					}
+				]
+			})
+		),
+		
+		match(function(){ return this.ctx.url; })(
+			content()(function(){
+				return [
+					{
+						elem: 'link',
+						url: this.ctx.url,
+						content: applyNext()
+					}
+				]
+			})
 		)
 	),
 
@@ -44,5 +57,9 @@ block('breadcrumbs')(
 				href: this.ctx.url
 			}
 		})
+	),
+	
+	elem('span')(
+		tag()('span')
 	)
 )

@@ -1,4 +1,6 @@
 block('goods-card').content()(function() {
+	var data = this.data['goods'];
+	
 	
 	var goods = ({
 			"goods-id": 1,
@@ -36,21 +38,21 @@ block('goods-card').content()(function() {
 					content: [
 						{
 							elem: 'price_old',
-							content: goods.price.old
+							content: data.price.old
 						},
-						goods.price.current
+						data.price.current
 					]
 				}
 			];
 		}else{
 			return {
 				elem: 'price_current',
-				content: goods.price.current
+				content: data.price.current
 			};
 		}
 	}
 
-	var images = goods.image.map(function(image){
+	var images = data.image.map(function(image){
 		return {
 			elem: 'image',
 			content: image
@@ -75,10 +77,10 @@ block('goods-card').content()(function() {
 										{
 											elem: 'header',
 											content: [
-												buildElemLable(goods.price.current, goods.price.old),
+												buildElemLable(data.price.current, data.price.old),
 												{
 													elem: 'title',
-													content: goods.title
+													content: data.title
 												}
 											]
 										},
@@ -90,7 +92,7 @@ block('goods-card').content()(function() {
 													elemMods: { small: true },
 													content: 'Описание'
 												},
-												goods.desc													
+												data.desc													
 											]
 										},
 										{
@@ -99,7 +101,7 @@ block('goods-card').content()(function() {
 												{
 													block: 'slider',
 													mods: { 'fotorama': true },
-													content: goods.image
+													content: data.image
 												}
 											]
 										}			
@@ -125,7 +127,7 @@ block('goods-card').content()(function() {
 											cls: 'goods-card_width_available',
 											content: [
 												'Цена:',
-												buildElemPrice(goods.price.current, goods.price.old)
+												buildElemPrice(data.price.current, data.price.old)
 											]
 										},
 										{
@@ -190,15 +192,15 @@ block('goods-card').content()(function() {
 															content: [
 																{
 																	elem: 'image',
-																	content: goods.preview
+																	content: data.preview
 																},
 																{
 																	elem: 'name',
-																	content: goods.title
+																	content: data.title
 																},
 																{
 																	elem: 'price_current',
-																	content: goods.price.current
+																	content: data.price.current
 																}
 															]
 														},

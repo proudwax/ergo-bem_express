@@ -86,6 +86,40 @@ router.get('/catalog/', function(req, res) {
 		.catch(function(err) { console.error(err); });
 });
 
+router.get('/catalog/:name/:id/', function(req, res) {
+    url = 'http://api-ergobaby.yazvyazda.ru/catalog/' + req.params.name + '_' + req.params.id + '.html';
+    // url = 'http://api-ergobaby.yazvyazda.ru' + req.originalUrl.slice(0, -1) + '.html';
+
+    got(url)
+        .then(function(response) {
+            json = Object.assign({}, {
+                    view: 'product'
+                }, JSON.parse(response.body));
+
+            render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null);
+        })
+        .catch(function(err) { console.error(err); });
+});
+
+// Сделано из-за того, что netcat не может для другого домена выдать корректное отображение объекта ($fullLink)
+router.get('/catalog/:name/', function(req, res) {
+    res.redirect('/catalog/');
+});
+
+router.get('/cart/', function(req, res) {
+	url = 'http://api-ergobaby.yazvyazda.ru//netcat/modules/minishop/index.php' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
+
+	got(url)
+		.then(function(response) {
+			json = Object.assign({}, {
+					view: 'index'
+				}, JSON.parse(response.body));
+			
+			render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null);
+		})
+		.catch(function(err) { console.error(err); });
+});
+
 router.get('*', function(req, res) {
     res.status(404);
     return render(req, res, { view: '404' });

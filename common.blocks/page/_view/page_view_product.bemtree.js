@@ -18,14 +18,6 @@ block('page').mod('view', 'product').content()(function() {
 		{
 			block: 'goods-card'
 		},
-		{
-			block: 'section',
-			content: [
-				{
-					block: 'goods-list'
-				}
-			]
-		},
         {
             block: 'footer'
         }
