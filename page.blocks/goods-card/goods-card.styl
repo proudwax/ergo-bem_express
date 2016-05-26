@@ -117,6 +117,7 @@ ctx = '.goods-card'
 	}
 
 	&__description{
+		order: 1;
 		box-sizing: border-box;
 		width: 50%;
 		padding-right: 1rem;
@@ -150,6 +151,7 @@ ctx = '.goods-card'
 	}
 
 	&__slider{
+		order: 2;
 		box-sizing: border-box;
 		width: 50%;
 		padding-top: 1rem;
@@ -177,5 +179,31 @@ ctx = '.goods-card'
 	&__name{
 		padding-left: 1rem;
 		padding-right: 1rem;
+	}
+	
+	@media only screen and (min-width: 48em) {
+		&__description{
+			width: 100%;
+			padding-right: 0;
+			order: 2;
+		}
+		
+		&__slider{
+			width: 100%;
+			order: 1;
+		}
+	}
+	
+		@media only screen and (min-width: 75em) {
+		&__description{
+			width: 50%;
+			padding-right: 1rem;
+			order: 1;
+		}
+		
+		&__slider{
+			width: 50%;
+			order: 2;
+		}
 	}
 }

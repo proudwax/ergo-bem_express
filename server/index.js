@@ -60,28 +60,36 @@ router.get('/ping/', function(req, res) {
     res.send('ok');
 });
 
+router.all('/*', function(req, res, next) {
+	console.log(req.cookies);
+	next();
+});
+
 router.get('/', function(req, res) {
     got('http://api-ergobaby.yazvyazda.ru')
         .then(function(response) {
             json = Object.assign({}, {
-                    view: 'index'
+                    view: 'main',
+                    content: 'main'
                 }, JSON.parse(response.body));
             
-            render(req, res, json);
+            // render(req, res, json);
+			render(req, res, json, req.xhr ? { block: 'content' } : null);
         })
         .catch(function(err) { console.error(err); });
 });
 
 router.get('/catalog/', function(req, res) {
-	url = 'http://api-ergobaby.yazvyazda.ru/catalog/' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
+    url = 'http://api-ergobaby.yazvyazda.ru/catalog/' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
 
-	got(url)
-		.then(function(response) {
-			json = Object.assign({}, {
-					view: 'index'
-				}, JSON.parse(response.body));
-			
-			render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null);
+    got(url)
+        .then(function(response) {
+            json = Object.assign({}, {
+                    view: 'main',
+                    content: 'catalog'
+                }, JSON.parse(response.body));
+            
+            render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null);
 		})
 		.catch(function(err) { console.error(err); });
 });
@@ -93,10 +101,11 @@ router.get('/catalog/:name/:id/', function(req, res) {
     got(url)
         .then(function(response) {
             json = Object.assign({}, {
-                    view: 'product'
+					view: 'main',
+                    content: 'product'
                 }, JSON.parse(response.body));
 
-            render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null);
+            render(req, res, json, req.xhr ? { block: 'content' } : null);
         })
         .catch(function(err) { console.error(err); });
 });
@@ -107,15 +116,20 @@ router.get('/catalog/:name/', function(req, res) {
 });
 
 router.get('/cart/', function(req, res) {
-	url = 'http://api-ergobaby.yazvyazda.ru//netcat/modules/minishop/index.php' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
+	url = 'http://api-ergobaby.yazvyazda.ru/netcat/modules/minishop/index.php' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
+
+console.log(url);
 
 	got(url)
 		.then(function(response) {
-			json = Object.assign({}, {
+			console.log(response.body);
+			
+			/* json = Object.assign({}, {
 					view: 'index'
 				}, JSON.parse(response.body));
 			
-			render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null);
+			
+			render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null); */
 		})
 		.catch(function(err) { console.error(err); });
 });

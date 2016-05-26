@@ -1,6 +1,6 @@
 block('goods')(
 	def()(function(){
-        return applyNext({ _js: this.ctx.js })
+        return applyNext({ _js: this.ctx.js, _status: this.ctx.cartStatus })
     }),
 
 	elem('price').content()(function(){
@@ -27,8 +27,6 @@ block('goods')(
 				}
 			];
 		}
-
-
 
 		return [
 			applyNext(),
@@ -57,7 +55,7 @@ block('goods')(
 		]
 	}),
 
-	match(function(){ return this.mods.showcase && this._js['goods-id'] })(
+	match(function(){ return this.mods.showcase && this._js['goods-id'] && this._status == false })(
 		elem('action')(
 			mix()([{ block : 'control-group' }]),
 		
@@ -100,6 +98,51 @@ block('goods')(
 			}]
 		})
 	),
+
+	match(function(){ return this.mods.showcase && this._js['goods-id'] && this._status == true })(
+		elem('action')(
+			mix()([{ block : 'control-group' }]),
+		
+			content()(function(){
+				return [
+					{
+						block: 'button',
+						mods: { theme: 'ergo', size: 'm', 'more': true, type : 'link' },
+						text: 'Подробнее',
+						url : this.ctx.urlInfo,
+						icon: {
+							block: 'icon',
+							cls: 'material-icons',
+							// content: '&#xE8B6;'
+							content: '&#xE8FF;'
+						}
+					},
+					{
+						block: 'button',
+						js: { hash: this.ctx.hash },
+						mods: { view : 'action', theme: 'ergo', size: 'm', netcat: 'put', disabled : true, success: true },
+						url: this.ctx.urlCart,
+						text: 'В корзине',
+						icon: {
+							block: 'icon',
+							cls: 'material-icons',
+							content: '&#xE876;'
+						}
+					}
+				]
+			})
+		),
+		
+		elem('name').content()(function(){
+			return [{
+				block: 'link',
+				mods: { theme: 'ergo', 'more': true },
+				url : this.ctx.urlInfo,
+				content: applyNext()
+			}]
+		})
+	),
+	
 	match(function(){ return this.mods['in-mimi-cart'] && this._js['goods-id'] })(
 		js()(true),
 		elem('content').content()(function() {
@@ -119,6 +162,7 @@ block('goods')(
 				}
 			];
 		}),
+		
 		elem('name').content()(function(){
 			return [{
 				block: 'link',

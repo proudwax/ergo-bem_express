@@ -19,9 +19,6 @@ exports.blocks = [
         ]
     },
     {
-        "name": "modal"
-    },
-    {
         "name": "icon"
     },
     {

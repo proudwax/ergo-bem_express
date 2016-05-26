@@ -1,31 +1,4 @@
-block('goods-list').content()(function() {
-	var items = this.data['goods-list'];
-	/* var items = ([
-		{
-			"goods-id": 1,
-			"title": "Ergobaby — Organic Navy",
-			"name": "Organic Navy",
-			"category": 2,
-			"preview": "http://ergobaby.yazvyazda.ru/assets/i/promo1.jpg",
-			"image": [
-				"http://ergobaby.yazvyazda.ru/assets/i/promo1.jpg",
-				"http://ergobaby.yazvyazda.ru/assets/i/promo1-1.jpg"
-			],
-			"price":
-				{
-					"old": 10000,
-					"current": 7500
-				},
-			"desc": "Назначение — городской",
-			"url": 
-				{
-					"info": "/1",
-					"cart": "/1_cart",
-					"tech": "/infoblock/id/"
-				},
-			"hash": "1fa5f5377f916b649d3ee04317d9ab9f "
-		}
-	]); */
+block('goods-list').elem('container').content()(function() {
 
 	function buildElemLable(price_current, price_old){
 		if(price_old != undefined && price_old != ''){
@@ -37,9 +10,6 @@ block('goods-list').content()(function() {
 		}
 	}
 
-	function replaceUrl(url, pattern){
-	}
-	
 	function getBemJson(json){
 		return json.map(function(item){
 			return {
@@ -50,9 +20,8 @@ block('goods-list').content()(function() {
 						block: 'goods',
 						js: {	
 							'goods-id': item['goods-id'], 
-							title: item.title, 
+							title: item.title,
 						},
-						cartStatus: item.cart_status,
 						mods: { 'border': true, 'showcase': true },
 						content: [
 							{
@@ -76,7 +45,7 @@ block('goods-list').content()(function() {
 											{
 												elem: 'name',
 												content: item.name,
-												urlInfo: item.url.tech
+												urlInfo: item.url.info
 											},
 											{
 												elem: 'price',
@@ -86,8 +55,8 @@ block('goods-list').content()(function() {
 											{
 												elem: 'action',
 												hash: item.hash,
-												urlInfo: item.url.tech,
-												urlCart: item.url.cart.replace(/\/netcat\/modules\/minishop\/index\.php/g, '/cart/')
+												urlInfo: item.url.info,
+												urlCart: item.url.cart
 											}
 										]
 									}
@@ -100,5 +69,6 @@ block('goods-list').content()(function() {
 		});
 	}
 
-	return getBemJson(items);
+	return getBemJson(this.data['goods-list']);
+	/* return getBemJson(this.dataGoods); */
 });
