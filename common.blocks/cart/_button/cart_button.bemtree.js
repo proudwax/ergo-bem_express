@@ -1,4 +1,6 @@
 /*block('cart').mod('button', true).content()(function(){
+	var data = this.data.cart;
+	
 	return [
 		{
 			block : 'button',

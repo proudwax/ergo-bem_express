@@ -26,9 +26,9 @@ var fs = require('fs'),
     port = process.env.PORT || config.defaultPort,
     isSocket = isNaN(port),
     isDev = process.env.NODE_ENV === 'development',
-
+	
 	http = require('http');
-
+	
 app
     .disable('x-powered-by')
     .enable('trust proxy')
@@ -47,7 +47,7 @@ app
     .use(passport.session())
     .use(slashes());
     // TODO: csrf, gzip
-
+	
 passport.serializeUser(function(user, done) {
     done(null, JSON.stringify(user));
 });
@@ -66,13 +66,13 @@ router.get('/ping/', function(req, res) {
 }); */
 
 router.get('/', function(req, res) {
-    got(config.tethDomain)
+    got('http://api-ergobaby.yazvyazda.ru')
         .then(function(response) {
             json = Object.assign({}, {
                     view: 'main',
                     content: 'main'
                 }, JSON.parse(response.body));
-
+            
             // render(req, res, json);
 			render(req, res, json, req.xhr ? { block: 'content' } : null);
         })
@@ -80,17 +80,15 @@ router.get('/', function(req, res) {
 });
 
 router.get('/catalog/', function(req, res) {
-    url = config.tethDomain + '/catalog/' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
+    url = 'http://api-ergobaby.yazvyazda.ru/catalog/' + (req._parsedUrl.search != null ? req._parsedUrl.search : '');
 
     got(url)
         .then(function(response) {
-			// console.log(response.body);
-
             json = Object.assign({}, {
                     view: 'main',
                     content: 'catalog'
                 }, JSON.parse(response.body));
-
+            
             render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null);
 		})
 		.catch(function(err) { console.error(err); });
@@ -125,12 +123,12 @@ console.log(url);
 	got(url)
 		.then(function(response) {
 			console.log(response.body);
-
+			
 			/* json = Object.assign({}, {
 					view: 'index'
 				}, JSON.parse(response.body));
-
-
+			
+			
 			render(req, res, json, req.xhr ? { block: 'goods-list', elem: 'container' } : null); */
 		})
 		.catch(function(err) { console.error(err); });

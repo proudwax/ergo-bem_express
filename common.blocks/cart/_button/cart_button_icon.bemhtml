@@ -2,7 +2,8 @@ block('cart').mod('button', 'icon')(
 	content()(function(){
 		var size = this.ctx.mods.size,
 			content = this.ctx.content,
-			count = this.ctx.js.count;
+			link = this.ctx.link || null;
+			count = this.ctx.count || 0;
 
 		function elemText(content){
 			return !!content ? { 
@@ -16,7 +17,8 @@ block('cart').mod('button', 'icon')(
 			{
 				block : 'link',
 				mods : { theme : 'ergo', 'size': size || 'm', badge: true, icon: true },
-				badge: this.ctx.js.count,
+				url : link,
+				badge: count,
 				content : [
 					elemText(content),
 					{

@@ -1,5 +1,6 @@
 block('goods-list').content()(function() {
 	var items = this.data['goods-list'];
+
 	/* var items = ([
 		{
 			"goods-id": 1,
@@ -17,7 +18,7 @@ block('goods-list').content()(function() {
 					"current": 7500
 				},
 			"desc": "Назначение — городской",
-			"url": 
+			"url":
 				{
 					"info": "/1",
 					"cart": "/1_cart",
@@ -28,7 +29,7 @@ block('goods-list').content()(function() {
 	]); */
 
 	function buildElemLable(price_current, price_old){
-		if(price_old != undefined && price_old != ''){
+		if(price_old != undefined && price_old != '' && price_current != price_old){
 			var percent = Math.ceil(100 - ((price_current / price_old) * 100));
 			return {
 				elem: 'lable',
@@ -39,18 +40,20 @@ block('goods-list').content()(function() {
 
 	function replaceUrl(url, pattern){
 	}
-	
+
 	function getBemJson(json){
 		return json.map(function(item){
+			console.log(item.url);
+
 			return {
 				elem: 'item',
 				js: { filter: item.category },
 				content: [
 					{
 						block: 'goods',
-						js: {	
-							'goods-id': item['goods-id'], 
-							title: item.title, 
+						js: {
+							'goods-id': item['goods-id'],
+							title: item.title,
 						},
 						cartStatus: item.cart_status,
 						mods: { 'border': true, 'showcase': true },
@@ -66,7 +69,7 @@ block('goods-list').content()(function() {
 												block: 'image',
 												mods: { lazy: true },
 												url: item.preview,
-												alt: item.name												
+												alt: item.name
 											}
 										]
 									},
@@ -76,7 +79,7 @@ block('goods-list').content()(function() {
 											{
 												elem: 'name',
 												content: item.name,
-												urlInfo: item.url.tech
+												urlInfo: item.url
 											},
 											{
 												elem: 'price',
@@ -84,17 +87,17 @@ block('goods-list').content()(function() {
 												price_old: item.price.old
 											},
 											{
-												elem: 'action',
-												hash: item.hash,
-												urlInfo: item.url.tech,
-												urlCart: item.url.cart.replace(/\/netcat\/modules\/minishop\/index\.php/g, '/cart/')
+												elem: 'action'
+												// hash: item.hash,
+												// urlInfo: item.url.tech,
+												// urlCart: item.url.cart.replace(/\/netcat\/modules\/minishop\/index\.php/g, '/cart/')
 											}
 										]
 									}
 								]
 							}
 						]
-					}			
+					}
 				]
 			}
 		});

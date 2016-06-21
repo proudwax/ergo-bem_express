@@ -6,7 +6,7 @@ block('goods')(
 	elem('price').content()(function(){
 		var price_current = '',
 			price_old = '';
-		
+
 		if(this.ctx.price_old){
 			price_old = [
 				{
@@ -14,7 +14,7 @@ block('goods')(
 					content: this.ctx.price_old
 				}
 			];
-		}		
+		}
 
 		if(this.ctx.price_current){
 			mods_current = price_old ? true : false;
@@ -58,7 +58,7 @@ block('goods')(
 	match(function(){ return this.mods.showcase && this._js['goods-id'] && this._status == false })(
 		elem('action')(
 			mix()([{ block : 'control-group' }]),
-		
+
 			content()(function(){
 				return [
 					{
@@ -88,8 +88,9 @@ block('goods')(
 				]
 			})
 		),
-		
+
 		elem('name').content()(function(){
+			console.log(this.ctx.urlInfo);
 			return [{
 				block: 'link',
 				mods: { theme: 'ergo', 'more': true },
@@ -102,7 +103,7 @@ block('goods')(
 	match(function(){ return this.mods.showcase && this._js['goods-id'] && this._status == true })(
 		elem('action')(
 			mix()([{ block : 'control-group' }]),
-		
+
 			content()(function(){
 				return [
 					{
@@ -132,7 +133,7 @@ block('goods')(
 				]
 			})
 		),
-		
+
 		elem('name').content()(function(){
 			return [{
 				block: 'link',
@@ -142,7 +143,7 @@ block('goods')(
 			}]
 		})
 	),
-	
+
 	match(function(){ return this.mods['in-mimi-cart'] && this._js['goods-id'] })(
 		js()(true),
 		elem('content').content()(function() {
@@ -158,11 +159,11 @@ block('goods')(
 								block: 'icon',
 							}
 						}
-					]	
+					]
 				}
 			];
 		}),
-		
+
 		elem('name').content()(function(){
 			return [{
 				block: 'link',
@@ -172,7 +173,5 @@ block('goods')(
 				content: applyNext()
 			}]
 		})
-	)	
+	)
 )
-
-

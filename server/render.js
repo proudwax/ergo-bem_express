@@ -1,7 +1,7 @@
 var path = require('path'),
     config = require('./config'),
     bundleName = 'index',
-    pathToBundle = path.resolve('desktop.bundles', bundleName),
+	pathToBundle = path.resolve(__dirname, '..', 'desktop.bundles', bundleName),
     BEMTREE = require(path.join(pathToBundle, bundleName + '.bemtree.js')).BEMTREE,
     BEMHTML = require(path.join(pathToBundle, bundleName + '.bemhtml.js')).BEMHTML,
 
