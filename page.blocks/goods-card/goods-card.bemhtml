@@ -3,7 +3,7 @@ block('goods-card')(
 
 	elem('title')(
 		tag()('h1'),
-		
+
 		mod('small', true)(
 			tag()('h2')
 		)

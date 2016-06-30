@@ -1,225 +1,95 @@
 block('goods-card').content()(function() {
 	var data = this.data['goods'];
-	
-	
-	var goods = ({
-			"goods-id": 1,
-			"title": "Ergobaby — Organic Navy",
-			"name": "Organic Navy",
-			"category": 2,
-			"preview": "http://ergobaby.yazvyazda.ru/assets/i/promo1.jpg",
-			"image": [
-				"http://ergobaby.yazvyazda.ru/assets/i/promo1.jpg",
-				"http://ergobaby.yazvyazda.ru/assets/i/promo1-1.jpg"
-			],
-			"price":
-				{
-					"old": 10000,
-					"current": 7500
-				},
-			"desc": "<ul><li>100% натуральный хлопок</li><li>вес ребёнка до 20кг</li><li>кармат с застёжкой на молнии</li></ul>"
-		});
-	
-	function buildElemLable(price_current, price_old){
-		if(price_old != undefined){
-			var percent = Math.ceil(100 - ((price_current / price_old) * 100));
-			return {
-				elem: 'lable',
-				content: 'до -' + percent + ' %'
-			};
-		}
-	}
 
-	function buildElemPrice(price_current, price_old){
-		if(price_old != undefined){
-			return [
-				{
-					elem: 'price_current',
-					content: [
-						{
-							elem: 'price_old',
-							content: data.price.old
-						},
-						data.price.current
-					]
-				}
-			];
-		}else{
-			return {
-				elem: 'price_current',
-				content: data.price.current
-			};
-		}
-	}
+	// console.log(data);
 
-	var images = data.image.map(function(image){
-		return {
-			elem: 'image',
-			content: image
-		}
-	});
+	// {
+	//    'goods-id':'[69][1]',
+	//    title:'Organic Bundle of Joy - Navy',
+	//    name:'Organic Navy',
+	//    preview:'http://yazvyazda.ru:3001/netcat_files/files/organic_bundle_of_joy_navy_0.jpg',
+	//    'preview-big':'http://yazvyazda.ru:3001',
+	//    price:{
+	//       min:null,
+	//       current:1231,
+	//       original:'1231'
+	//    },
+	//    desc:'Тест',
+	//    properties:{
+	//       'Страна производитель':null,
+	//       'Материал':'Натуральный хломок',
+	//       'Цвет':'Белый',
+	//       'Возраст ребёнка':'От рождения до 3-х лет',
+	//       'Вес ребёнка':'До 18кг'
+	//    },
+	//    slider:[
+	//       'http://yazvyazda.ru:3001/netcat_files/multifile/254/organic_bundle_of_joy_navy_0.jpg',
+	//       'http://yazvyazda.ru:3001/netcat_files/multifile/254/original_baby_carrier_1_0.Jpg',
+	//       'http://yazvyazda.ru:3001/netcat_files/multifile/254/original_baby_carrier_2_0.Jpg'
+	//    ]
+	// }
+
+	function getProperty(items){
+			var bemJson = new Array(), // не понятно почему в конечном итоге это object
+					i = 0;
+
+			for (var key in items){
+				bemJson[i] = (
+					{
+						elem: 'prorerty_row',
+						content: [
+								{
+									elem: 'prorerty_key',
+									content: key
+								},
+								{
+									elem: 'prorerty_val',
+									content: items[key]
+								}
+						]
+					}
+				)
+				i++;
+			}
+
+			return bemJson;
+	}
 
 	return [
-		{ 
-			block : 'row', 
+		{
+			elem: 'main',
+			mix: { block: 'section' },
 			content: [
 				{
-					elem : 'col',
-					elemMods : { 8: true },
+					elem: 'header',
 					content: [
 						{
-							block: 'section',
-							content: [
-								{
-									block: 'goods-card',
-									elem: 'information',
-									content: [
-										{
-											elem: 'header',
-											content: [
-												buildElemLable(data.price.current, data.price.old),
-												{
-													elem: 'title',
-													content: data.title
-												}
-											]
-										},
-										{
-											elem: 'description',
-											content: [
-												{
-													elem: 'title',
-													elemMods: { small: true },
-													content: 'Описание'
-												},
-												data.desc													
-											]
-										},
-										{
-											elem: 'slider',
-											content: [
-												{
-													block: 'slider',
-													mods: { 'fotorama': true },
-													content: data.image
-												}
-											]
-										}			
-									]
-								}							
-							]
+							elem: 'title',
+							content: data.title
 						}
 					]
 				},
 				{
-					elem : 'col',
-					elemMods : { 4: true },
+					block: 'slider',
+					mods: { 'fotorama': true },
+					mix: { block: 'goods-card', elem: 'slider' },
+					content: data.slider
+				},
+				{
+					elem: 'information',
 					content: [
 						{
-							block: 'section',
-							content: [
-								{
-									block: 'goods-card',
-									elem: 'cost',
-									content: [
-										{
-											elem: 'price',
-											cls: 'goods-card_width_available',
-											content: [
-												'Цена:',
-												buildElemPrice(data.price.current, data.price.old)
-											]
-										},
-										{
-											elem: 'color',
-											cls: 'goods-card_width_available',
-											content: [
-												'Цвет:',
-												{
-												    block : 'select',
-												    mods : { mode : 'radio', theme : 'ergo', size : 'l', width : 'available', type: 'link' },
-												    name : 'color',
-												    val : 1,
-												    options : [
-												        { 
-												        	val: 1, 
-												        	text: [
-												        		{
-												        			block: 'link',
-												        			url : '?color=Green',
-                													content : 'Green'
-												        		}
-												        	]
-												        },
-												        { 
-												        	val: 2, 
-												        	text: [
-												        		{
-												        			block: 'link',
-												        			url : '?color=Red',
-                													content : 'Red'
-												        		}
-												        	]	        	 
-												        },
-												        { 
-												        	val : 3,
-												        	text : [
-												        		{
-												        			block: 'link',
-												        			url : '?color=Mint',
-                													content : 'Mint'
-												        		}
-												        	]	
-												        }
-												    ]
-												}
-											]
-										},
-										{
-											elem: 'action',
-											cls: 'goods-card_width_available',
-										},
-										{
-											elem: 'nav',
-											content: [
-												{
-													block: 'sticky',
-													mods: { theme: 'ergo', type: 'hidden' },
-													content: [
-														{
-															block: 'goods-card',
-															elem: 'toolbar',
-															content: [
-																{
-																	elem: 'image',
-																	content: data.preview
-																},
-																{
-																	elem: 'name',
-																	content: data.title
-																},
-																{
-																	elem: 'price_current',
-																	content: data.price.current
-																}
-															]
-														},
-														{
-															block: 'goods-card',
-															elem: 'action'
-														}
-													]
-												}	
-											]
-										}
-									]
-								}							
-							]
+							elem: 'cost',
+							content: '123'
+						},
+						{
+							elem: 'properties',
+							content: getProperty(data.properties)
 						}
 					]
 				}
 			]
 		}
-	];
-	
+	]
+
 });

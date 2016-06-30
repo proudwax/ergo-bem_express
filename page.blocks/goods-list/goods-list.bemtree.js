@@ -43,7 +43,7 @@ block('goods-list').content()(function() {
 
 	function getBemJson(json){
 		return json.map(function(item){
-			console.log(item.url);
+			// console.log(item.url);
 
 			return {
 				elem: 'item',
@@ -55,7 +55,7 @@ block('goods-list').content()(function() {
 							'goods-id': item['goods-id'],
 							title: item.title,
 						},
-						cartStatus: item.cart_status,
+						// cartStatus: item.cart_status,
 						mods: { 'border': true, 'showcase': true },
 						content: [
 							{
@@ -79,7 +79,7 @@ block('goods-list').content()(function() {
 											{
 												elem: 'name',
 												content: item.name,
-												urlInfo: item.url
+												urlInfo: item.url.tech + '/'
 											},
 											{
 												elem: 'price',
